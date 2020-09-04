@@ -1,5 +1,7 @@
-Just a little fun project I built
+Couple projects I work on here for fun. Big fan of machine learning. 
 
-Currently, I have no matches, so I'm unable to test exceptions like getting a match and what not and I'm too cheap to pay for Bumble Premium.
+These are no means fully functional, automated programs, as bots like a full-fledged LinkedIn or Indeed Bot's concepts typically can be sold and used for profit, and since the stuff I upload here are free, I don't want anyone taking advantage of that. 
 
-Consider it a work in progress
+Consider these projects a sample of the work I can do for your company :)
+
+Thanks for stopping by!
