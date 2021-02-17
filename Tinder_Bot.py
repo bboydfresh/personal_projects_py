@@ -2,7 +2,7 @@ from selenium import webdriver
 import time
 from random import random
 
-driver = webdriver.Chrome(executable_path=r'/Users/user/Downloads/chromedriver')
+driver = webdriver.Chrome(executable_path=r'/Users/donalddang/Downloads/chromedriver 2')
 driver.get('https://tinder.com')
 
 def SwipeRight(driver):
@@ -18,47 +18,58 @@ def Auto_Swipe(driver):
         try:
             try:
                 try:
-                    rand = random()
-                    if rand > 0.25:
-                        time.sleep(10)
-                        SwipeRight(driver)
-                    else:
-                        time.sleep(7)
-                        SwipeLeft(driver)
+                    try:
+                        try:
+                            rand = random()
+                            if rand > 0.25:
+                                time.sleep(5)
+                                SwipeRight(driver)
+                            else:
+                                time.sleep(4)
+                                SwipeLeft(driver)
+                        except Exception:
+                            time.sleep(20)
+                            Its_A_Match = driver.find_element_by_xpath('//*[@id="modal-manager-canvas"]/div/div/div[1]/div/div[4]/button')
+                            Its_A_Match.click()
+                    except Exception:
+                        time.sleep(16)
+                        Dont_Add_Tinder_To_Home_Screen = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[2]/button[2]')
+                        Dont_Add_Tinder_To_Home_Screen.click()
                 except Exception:
-                    time.sleep(20)
-                    Its_A_Match = driver.find_element_by_xpath('//*[@id="modal-manager-canvas"]/div/div/div[1]/div/div[3]/a')
-                    Its_A_Match.click()
+                    time.sleep(5)
+                    Maybe_Later = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/button[2]')
+                    Maybe_Later.click()
             except Exception:
-                time.sleep(16)
-                Dont_Add_Tinder_To_Home_Screen = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[2]/button[2]')
-                Dont_Add_Tinder_To_Home_Screen.click()
+                Tinder_Plus = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[3]/button')
+                Tinder_Plus.click()
+                Press_Back = driver.find_element_by_xpath('//*[@id="content"]/div/div[1]/div/main/div[1]/div/div/div/div/div[1]/div/div[1]/button')
+                Press_Back.click()
         except Exception:
-            time.sleep(5)
-            Maybe_Later = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/button[2]')
-            Maybe_Later.click()
+            Dontsuperlike = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/button[2]')
+            Dontsuperlike.click()
 def AcceptTerms(driver):
     time.sleep(10)
     AcceptTerms = driver.find_element_by_xpath('//*[@id="content"]/div/div[2]/div/div/div[1]/button')
     AcceptTerms.click()
     time.sleep(5)
 
-def FacebookLogin(driver):
-    LoginWithFacebook = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[1]/div/div[3]/span/div[2]/button')
-    LoginWithFacebook.click()
-    time.sleep(8)
-    driver.switch_to_window(driver.window_handles[1])
-    Facebook_Login = driver.find_element_by_xpath('//*[@id="email"]')
-    Facebook_Login.send_keys('mzuckerberg@facebook.com')
-    time.sleep(2)
-    Facebook_Password = driver.find_element_by_xpath('//*[@id="pass"]')
-    Facebook_Password.send_keys('myfacebookpassword')
+def PhoneLogin(driver):
+    ClickLogin = driver.find_element_by_xpath('//*[@id="content"]/div/div[1]/div/main/div[1]/div/div/div/div/header/div/div[2]/div[2]/button')
+    ClickLogin.click()
     time.sleep(4)
-    Click_login = driver.find_element_by_xpath('//*[@id="loginbutton"]')
-    Click_login.click()
-    time.sleep(25) #I have 2FA so I have to enter this manually, by applying a sleep function.
-    driver.switch_to_window(driver.window_handles[0])
-
+    LoginWithPhone = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[1]/div/div[3]/span/div[3]/button')
+    LoginWithPhone.click()
+    time.sleep(8)
+    EnterPhone = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[1]/div[2]/div/input')
+    EnterPhone.send_keys('1111111111')
+    ClickContinue = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[1]/button')
+    ClickContinue.click()
+    time.sleep(30) #this is a long sleep because I need to confirm my phone number, lol. It's not fully automated due to 2FA
+    ClickNextContinue = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[1]/button')
+    ClickNextContinue.click()
+    time.sleep(60) #this is a long sleep because I need to confirm my email, lol. It's not fully automated due to 2FA
+    ConfirmEmail = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[1]/button')
+    ConfirmEmail.click()
 def AllowLocation(driver):
     time.sleep(10)
     Allow_Location_services = driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div/div/div[3]/button[1]')
@@ -71,7 +82,7 @@ while True:
     try:
         AcceptTerms(driver)
     except Exception:
-        FacebookLogin(driver)
+        PhoneLogin(driver)
         while True:
             try:
                 AllowLocation(driver)
